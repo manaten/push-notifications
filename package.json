@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Push notifications codelab.",
   "scripts": {
+    "start": "http-server ./app -p 8080",
     "lint": "eslint '.'",
     "test": "npm run lint",
     "deploy": "gcloud app deploy"
@@ -19,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/GoogleChrome/push-notifications/issues"
   },
-  "homepage": "https://github.com/GoogleChrome/push-notifications#readme"
+  "homepage": "https://github.com/GoogleChrome/push-notifications#readme",
+  "dependencies": {
+    "http-server": "0.10.0"
+  }
 }
