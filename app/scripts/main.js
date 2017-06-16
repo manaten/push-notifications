@@ -115,29 +115,30 @@ function initialiseUI() {
   // Set the initial subscription value
   swRegistration.pushManager.getSubscription()
     .then(function (subscription) {
+      updateSubscriptionOnServer(subscription);
       isSubscribed = !(subscription === null);
 
       if (isSubscribed) {
-        log('User IS subscribed.');
+        log('User IS subscribed.', subscription);
       } else {
         log('User is NOT subscribed.');
       }
-
       updateBtn();
     });
 }
 function updateBtn() {
-  if (Notification.permission === 'denied') {
-    pushButton.textContent = 'プッシュ通知はブロックされています';
+  const permission = Notification.permission;
+  if (permission === 'denied') {
+    pushButton.textContent = `プッシュ通知はブロックされています (${permission})`;
     pushButton.disabled = true;
     updateSubscriptionOnServer(null);
     return;
   }
 
   if (isSubscribed) {
-    pushButton.textContent = 'プッシュ通知を無効化する';
+    pushButton.textContent = `プッシュ通知を無効化する (${permission})`;
   } else {
-    pushButton.textContent = 'プッシュ通知を有効にする';
+    pushButton.textContent = `プッシュ通知を有効にする (${permission})`;
   }
 
   pushButton.disabled = false;
