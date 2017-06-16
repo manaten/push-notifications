@@ -31,6 +31,7 @@ self.addEventListener('push', function(event) {
   const options = {
     body: data.body,
     icon: data.icon,
+    image: data.image,
     badge: data.badge,
     data: data,
     actions: [
