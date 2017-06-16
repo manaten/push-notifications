@@ -32,7 +32,11 @@ self.addEventListener('push', function(event) {
     body: data.body,
     icon: data.icon,
     badge: data.badge,
-    data: data
+    data: data,
+    actions: [
+      { action: 'game', title: 'ゲームページを開く', icon: 'images/icon.png' },
+      { action: 'user', title: '作者ページを開く', icon: 'images/icon.png' }
+    ]
   };
   event.waitUntil(self.registration.showNotification(title, options));
 });
@@ -41,5 +45,8 @@ self.addEventListener('notificationclick', function(event) {
   console.log('[Service Worker] Notification click Received.');
   event.notification.close();
   console.log(event.notification.data);
-  event.waitUntil(clients.openWindow(event.notification.data.url));
+  console.log(event.action);
+  if (event.action === 'game') {
+    event.waitUntil(clients.openWindow(event.notification.data.url));
+  }
 });
