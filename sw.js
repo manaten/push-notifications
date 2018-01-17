@@ -54,4 +54,5 @@ self.addEventListener('notificationclick', function(event) {
 
 self.addEventListener('pushsubscriptionchange', function(event) {
   console.log(event);
+  console.log(document.cookie);
 });
